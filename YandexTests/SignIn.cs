@@ -39,7 +39,7 @@ namespace YandexTests
             MailPage mailPage = passportPasswortPage.EnterPassword(_config.Users[user].Password);
             
             // Verify that user is signed in
-            Assert.IsTrue(driver.FindElement(By.XPath(MailPage.InboxButtonXPath)).Displayed);
+            Assert.IsTrue(mailPage.GetElementByXpath(MailPage.InboxButtonXPath).Displayed, "Element Inbox button is not displayed.");
 
             // Sign out and complete test
             mailPage.SignOut();

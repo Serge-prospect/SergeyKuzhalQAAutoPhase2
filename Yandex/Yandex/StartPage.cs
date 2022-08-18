@@ -10,18 +10,9 @@ namespace Yandex
     public class StartPage : BasePage
     {
         const string LoginButtonClassName = "desk-notif-card__login-new-item_mail";
-
-        Dictionary<string, IWebElement> _elementCollection;
-
+        
         public StartPage(IWebDriver driver) : base(driver)
-        {
-            var loginButton = GetElementByClassName(LoginButtonClassName);
-
-            _elementCollection = new Dictionary<string, IWebElement>()
-            {
-                ["login"] = loginButton
-            };
-        }
+        { }
 
         public static StartPage GoToStartPage(ConfigData config)
         {
@@ -35,7 +26,7 @@ namespace Yandex
         {
             var originalWindow = GetOriginalWindow();
 
-            _elementCollection["login"]?.Click();
+            GetElementByClassName(LoginButtonClassName)?.Click();
             Thread.Sleep(ElementWaitTime);
 
             SwitchToNewWindow(originalWindow);

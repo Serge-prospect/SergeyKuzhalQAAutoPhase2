@@ -12,24 +12,13 @@ namespace Yandex
         const string PasswordInputId = "passp-field-passwd";
         const string SignInButtonId = "passp:sign-in";
 
-        Dictionary<string, IWebElement> _elementCollection;
-
         public PassportPasswordPage(IWebDriver driver) : base(driver)
-        {
-            var passwordInput = GetElementById(PasswordInputId);
-            var signInButton = GetElementById(SignInButtonId);
-
-            _elementCollection = new Dictionary<string, IWebElement>()
-            {               
-                ["password"] = passwordInput,
-                ["signIn"] = signInButton
-            };
-        }
+        { }
 
         public MailPage EnterPassword(string password)
         {
-            _elementCollection["password"]?.SendKeys(password);
-            _elementCollection["signIn"]?.Click();
+            GetElementById(PasswordInputId)?.SendKeys(password);
+            GetElementById(SignInButtonId)?.Click();
             Thread.Sleep(MailPageWaitTime);
 
             return new MailPage(_driver);
