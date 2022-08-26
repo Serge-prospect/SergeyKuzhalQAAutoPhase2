@@ -9,15 +9,15 @@ namespace Yandex
 {
     public class StartPage : BasePage
     {
-        const string LoginButtonClassName = "desk-notif-card__login-new-item_mail";
+        readonly By LOGIN_BUTTON = By.ClassName("desk-notif-card__login-new-item_mail");
         
         public StartPage(IWebDriver driver) : base(driver)
         { }
 
         public static StartPage GoToStartPage(ConfigData config)
         {
-            config.Driver.Url = config.StartPageUrl;
-            Thread.Sleep(ElementWaitTime);
+            config.Driver.Url = config.StartUrls["startPageUrl"];
+            Thread.Sleep(SleepTime);
 
             return new StartPage(config.Driver);
         }
@@ -26,8 +26,8 @@ namespace Yandex
         {
             var originalWindow = GetOriginalWindow();
 
-            GetElementByClassName(LoginButtonClassName)?.Click();
-            Thread.Sleep(ElementWaitTime);
+            GetElementByClassName(LOGIN_BUTTON)?.Click();
+            Thread.Sleep(PageSleepTime);
 
             SwitchToNewWindow(originalWindow);
 

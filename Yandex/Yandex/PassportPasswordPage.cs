@@ -9,17 +9,17 @@ namespace Yandex
 {
     public class PassportPasswordPage : BasePage
     {        
-        const string PasswordInputId = "passp-field-passwd";
-        const string SignInButtonId = "passp:sign-in";
+        readonly By PASSWORD_INPUT = By.Id("passp-field-passwd");
+        readonly By SIGN_IN_BUTTON = By.Id("passp:sign-in");
 
         public PassportPasswordPage(IWebDriver driver) : base(driver)
         { }
 
         public MailPage EnterPassword(string password)
         {
-            GetElementById(PasswordInputId)?.SendKeys(password);
-            GetElementById(SignInButtonId)?.Click();
-            Thread.Sleep(MailPageWaitTime);
+            GetElementById(PASSWORD_INPUT)?.SendKeys(password);
+            GetElementById(SIGN_IN_BUTTON)?.Click();
+            Thread.Sleep(PageSleepTime);
 
             return new MailPage(_driver);
         }

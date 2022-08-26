@@ -9,23 +9,19 @@ namespace Yandex
 {
     public class PassportUsernamePage : BasePage
     {
-        const string LoginButtonXPath = "//button[@data-type='login']";
-        const string UsernameInputId = "passp-field-login";
-        const string SignInButtonId = "passp:sign-in";
+        readonly By LOGIN_BUTTON = By.XPath("//button[@data-type='login']");
+        readonly By USERNAME_INPUT = By.Id("passp-field-login");
+        readonly By SIGN_IN_BUTTON = By.Id("passp:sign-in");
 
         public PassportUsernamePage(IWebDriver driver) : base(driver)
         { }
 
         public PassportPasswordPage EnterUsername(string username)
         {
-            var loginButton = GetElementByXpath(LoginButtonXPath);
-            var usernameInput = GetElementById(UsernameInputId);
-            var signInButton = GetElementById(SignInButtonId);
-
-            GetElementByXpath(LoginButtonXPath)?.Click();
-            GetElementById(UsernameInputId)?.SendKeys(username);
-            GetElementById(SignInButtonId)?.Click();
-            Thread.Sleep(ElementWaitTime);
+            GetElementByXpath(LOGIN_BUTTON)?.Click();
+            GetElementById(USERNAME_INPUT)?.SendKeys(username);
+            GetElementById(SIGN_IN_BUTTON)?.Click();
+            Thread.Sleep(SleepTime);
 
             return new PassportPasswordPage(_driver);
         }

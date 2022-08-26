@@ -9,17 +9,18 @@ namespace Yandex
 {
     public class MailPage : BasePage
     {
-        public const string InboxButtonXPath = "//a[@href='#tabs/relevant']";
-        const string ProfileButtonClassName = "user-account";
-        const string SignOutButtonClassName = "legouser__menu-item_action_exit";
+        public readonly By INBOX_BUTTON = By.XPath("//a[@href='#tabs/relevant']");
+        public readonly By ACCOUNT_NAME = By.CssSelector("a.legouser__current-account span.user-account__name");
+        readonly By PROFILE_BUTTON = By.ClassName("legouser__current-account");
+        readonly By SIGN_OUT_BUTTON = By.ClassName("legouser__menu-item_action_exit");
 
         public MailPage(IWebDriver driver) : base(driver)
         { }
 
         public void SignOut()
         {
-            GetElementByClassName(ProfileButtonClassName)?.Click();
-            GetElementByClassName(SignOutButtonClassName)?.Click();
+            GetElementByClassName(PROFILE_BUTTON)?.Click();
+            GetElementByClassName(SIGN_OUT_BUTTON)?.Click();
 
             _driver.Close();
         }

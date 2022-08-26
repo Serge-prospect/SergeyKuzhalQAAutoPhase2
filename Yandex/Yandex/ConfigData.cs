@@ -9,7 +9,7 @@ namespace Yandex
 {
     public class ConfigData
     {
-        public readonly string StartPageUrl = "https:\\yandex.com";
+        public readonly Dictionary<string, string> StartUrls;
 
         public readonly Dictionary<string, User> Users;
     
@@ -18,6 +18,12 @@ namespace Yandex
 
         public ConfigData()
         {
+            StartUrls = new Dictionary<string, string>()
+            {
+                ["startPageUrl"] = "https:\\yandex.com",
+                ["startMailPageUrl"] = "https:\\mail.yandex.com"
+            };
+
             Users = new Dictionary<string, User>()
             {
                 ["user1"] = new User("user220814-1", "Yandex1qaz!QAZ"),

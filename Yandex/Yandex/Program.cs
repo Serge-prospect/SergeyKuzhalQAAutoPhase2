@@ -17,8 +17,8 @@ namespace Yandex
 
             StartPage startPage = StartPage.GoToStartPage(config);
             PassportUsernamePage passportUsernamePage = startPage.GoToPassportUsernamePage();                        
-            PassportPasswordPage passportPasswortPage = passportUsernamePage.EnterUsername(config.Users["user1"].Username);
-            MailPage mailPage = passportPasswortPage.EnterPassword(config.Users["user1"].Password);
+            PassportPasswordPage passportPasswordPage = passportUsernamePage.EnterUsername(config.Users["user1"].Username);
+            MailPage mailPage = passportPasswordPage.EnterPassword(config.Users["user1"].Password);
 
             mailPage.SignOut();
             driver.Quit();

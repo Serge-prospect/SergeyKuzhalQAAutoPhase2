@@ -7,24 +7,24 @@ using System.Threading;
 namespace YandexTests
 {
     [TestClass]
-    public class SignIn
+    public class SignInFromStartPage
     {
         readonly ConfigData _config;
 
-        public SignIn()
+        public SignInFromStartPage()
         {
             _config = new ConfigData();
         }
 
         [TestMethod]
-        public void SignInPositive()
+        public void SignInFromStartPagePositive()
         {
             var user = "user1";
 
             IWebDriver driver = _config.Driver;
-            
+
             /* Set driver window position and size, if you need. */
-            //_config.SetDriverWindow();
+            _config.SetDriverWindow();
 
             // Go to Start page
             StartPage startPage = StartPage.GoToStartPage(_config);
@@ -33,13 +33,13 @@ namespace YandexTests
             PassportUsernamePage passportUsernamePage = startPage.GoToPassportUsernamePage();            
 
             // Enter username
-            PassportPasswordPage passportPasswortPage = passportUsernamePage.EnterUsername(_config.Users[user].Username);
+            PassportPasswordPage passportPasswordPage = passportUsernamePage.EnterUsername(_config.Users[user].Username);
 
             // Enter password and sign in
-            MailPage mailPage = passportPasswortPage.EnterPassword(_config.Users[user].Password);
+            MailPage mailPage = passportPasswordPage.EnterPassword(_config.Users[user].Password);
             
             // Verify that user is signed in
-            Assert.IsTrue(mailPage.GetElementByXpath(MailPage.InboxButtonXPath).Displayed, "Element Inbox button is not displayed.");
+            Assert.IsTrue(mailPage.GetElementByXpath(mailPage.INBOX_BUTTON).Displayed, "Element Inbox button is not displayed.");
 
             // Sign out and complete test
             mailPage.SignOut();
