@@ -26,7 +26,7 @@ namespace WaitForUser
             return new DynamicDataLoadingDemo(driver, waitTime);
         }
 
-        public IWebElement GetelementBy(By elementBy)
+        public IWebElement GetElement(By elementBy)
         {
             try
             {
@@ -43,8 +43,8 @@ namespace WaitForUser
         {
             try
             {
-                return GetelementBy(newUserPhotoLocator).Displayed
-                    && GetelementBy(newUserFullNameLocator).Displayed;
+                return GetElement(newUserPhotoLocator).Displayed
+                    && GetElement(newUserFullNameLocator).Displayed;
             }
             catch(Exception ex)
             {

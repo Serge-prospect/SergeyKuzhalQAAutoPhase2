@@ -73,6 +73,7 @@ namespace AlertsTest
             }
             finally { driver.Quit(); }            
         }
+
         [TestMethod]
         public void ClickDismissJsConfirmAlertBoxPositive()
         {

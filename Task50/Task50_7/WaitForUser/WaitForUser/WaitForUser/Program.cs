@@ -16,7 +16,7 @@ namespace WaitForUser
 
             try
             {
-                page.GetelementBy(page.GetNewUserButton)?.Click();
+                page.GetElement(page.GetNewUserButton)?.Click();
 
                 bool isNewUserDisplayed = page.IsNewUserDisplayed();
                 PrintNewUserStatus(isNewUserDisplayed);
