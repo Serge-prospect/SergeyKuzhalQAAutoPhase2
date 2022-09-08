@@ -7,8 +7,8 @@ namespace YandexLoginLogout
         const string _url = "https:\\yandex.com";
 
         public readonly By SIGN_IN_BUTTON = By.CssSelector("a.desk-notif-card__login-new-item_enter");
-        readonly By USER_MENU =
-                        By.XPath("//span[contains(@class,'username')]//parent::a[contains(@class,'usermenu-link__control')]");
+        public readonly By USER_MENU =
+            By.XPath("//span[contains(@class,'username')]//parent::a[contains(@class,'usermenu-link__control')]");
         readonly By SIGN_OUT_BUTTON = By.XPath("//a[contains(@href,'mode=logout')]");
         readonly By ACCOUNT_NAME = By.CssSelector("div.usermenu__user-name");
 

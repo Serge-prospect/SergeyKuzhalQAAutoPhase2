@@ -9,6 +9,7 @@ namespace YandexLoginLogout
     {        
         public readonly int WaitTime = 3;
         public readonly Dictionary<string, User> Users;
+        public readonly string ScreenshotPath = "D:\\SeleniumScreenshots\\";
 
         public readonly IWebDriver Driver = new ChromeDriver(".");
         readonly Point _windowPosition = new Point(-1280, 100);

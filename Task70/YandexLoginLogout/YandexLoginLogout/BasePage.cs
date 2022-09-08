@@ -43,5 +43,14 @@ namespace YandexLoginLogout
                 return null;
             }
         }
+
+        public void GetPageScreenshotPng(string fileName, By waitForWebElement)
+        {
+            if(_wait.Until(ExpectedConditions.ElementExists(waitForWebElement)).Displayed)
+            {
+                Screenshot pageScreenshot = (_driver as ITakesScreenshot).GetScreenshot();
+                pageScreenshot.SaveAsFile(fileName, ScreenshotImageFormat.Png);
+            }            
+        }
     }
 }
