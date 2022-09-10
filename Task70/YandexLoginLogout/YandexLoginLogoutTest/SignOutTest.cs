@@ -6,9 +6,9 @@ namespace YandexLoginLogoutTest
     [TestClass]
     public class SignOutTest
     {
-        const string UnauthMainPageStart = "SignOutTestUnauthMainPageStart.png";
-        const string UnauthMainPageFinal = "SignOutTestUnauthMainPageFinal.png";
-        const string AuthMainPage = "SignOutTestAuthMainPage.png";
+        const string UnauthMainPageStartPng = "SignOutTestUnauthMainPageStart.png";
+        const string UnauthMainPageFinalPng = "SignOutTestUnauthMainPageFinal.png";
+        const string AuthMainPagePng = "SignOutTestAuthMainPage.png";
 
         [TestMethod]
         public void SignOutTestPositive()
@@ -24,16 +24,17 @@ namespace YandexLoginLogoutTest
             try
             {
                 MainPage mainPage = MainPage.GoToMainPage(config);
+                config.CreateDirectory(config.ScreenshotPath);
                 mainPage.GetPageScreenshotPng
-                    (config.ScreenshotPath + UnauthMainPageStart, mainPage.SIGN_IN_BUTTON);
+                    ($@"{config.ScreenshotPath}\{UnauthMainPageStartPng}", mainPage.SIGN_IN_BUTTON);
                 PassportUsernamePage passportUsernamePage = mainPage.GoToPassportUsernamePage();
                 PassportPasswordPage passportPasswordPage = passportUsernamePage.EnterUsername(user.Username);
                 MainPage authorizedMainPage = passportPasswordPage.EnterPassword(user.Password);
                 authorizedMainPage.GetPageScreenshotPng
-                    (config.ScreenshotPath + AuthMainPage, authorizedMainPage.USER_MENU);
+                    ($@"{config.ScreenshotPath}\{AuthMainPagePng}", authorizedMainPage.USER_MENU);
                 MainPage unAuthorizedMainPage = authorizedMainPage.SignOut();
                 mainPage.GetPageScreenshotPng
-                    (config.ScreenshotPath + UnauthMainPageFinal, mainPage.SIGN_IN_BUTTON);
+                    ($@"{config.ScreenshotPath}\{UnauthMainPageFinalPng}", mainPage.SIGN_IN_BUTTON);
 
                 var signInButton = unAuthorizedMainPage.GetWebElementBy(unAuthorizedMainPage.SIGN_IN_BUTTON);
                 var loginCookie = unAuthorizedMainPage.GetCookieValue(unAuthorizedMainPage.LoginCookie);

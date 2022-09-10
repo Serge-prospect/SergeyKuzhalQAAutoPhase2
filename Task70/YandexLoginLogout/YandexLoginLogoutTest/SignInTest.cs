@@ -1,7 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using YandexLoginLogout;
 
 namespace YandexLoginLogoutTest
@@ -9,8 +6,8 @@ namespace YandexLoginLogoutTest
     [TestClass]
     public class SignInTest
     {
-        const string UnauthMainPage = "SignInTestUnauthMainPage.png";
-        const string AuthMainPage = "SignInTestAuthMainPage.png";
+        const string UnauthMainPagePng = "SignInTestUnauthMainPage.png";
+        const string AuthMainPagePng = "SignInTestAuthMainPage.png";
 
         [TestMethod]
         public void SignInTestPositive()
@@ -26,13 +23,14 @@ namespace YandexLoginLogoutTest
             try
             {
                 MainPage mainPage = MainPage.GoToMainPage(config);
+                config.CreateDirectory(config.ScreenshotPath);
                 mainPage.GetPageScreenshotPng
-                    (config.ScreenshotPath + UnauthMainPage, mainPage.SIGN_IN_BUTTON);
+                    ($@"{config.ScreenshotPath}\{UnauthMainPagePng}", mainPage.SIGN_IN_BUTTON);
                 PassportUsernamePage passportUsernamePage = mainPage.GoToPassportUsernamePage();
                 PassportPasswordPage passportPasswordPage = passportUsernamePage.EnterUsername(user.Username);
                 MainPage authorizedMainPage = passportPasswordPage.EnterPassword(user.Password);
                 authorizedMainPage.GetPageScreenshotPng
-                    (config.ScreenshotPath + AuthMainPage, authorizedMainPage.USER_MENU);
+                    ($@"{config.ScreenshotPath}\{AuthMainPagePng}", authorizedMainPage.USER_MENU);
 
                 var accountUsername = authorizedMainPage.GetAccountUsername();
                 var loginCookie = authorizedMainPage.GetCookieValue(authorizedMainPage.LoginCookie);
